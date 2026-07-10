@@ -1,0 +1,18 @@
+#include "SimScheluder.hpp"
+
+/// @param ObjectName 
+/// @param ObjectDescription 
+/// @param ParrentObject default value nullptr
+/// @param fn 
+Scheduler::SimEntryPoint::SimEntryPoint(Smp::String8 ObjectName,
+    Smp::String8 ObjectDescription,
+    Smp::IObject* ParrentObject,
+    std::function<void()> fn)
+    : SimObject(ObjectName,
+        ObjectDescription,
+        ParrentObject), Fn_(fn) {
+
+}
+
+
+void Scheduler::SimEntryPoint::Execute() const { if(Fn_) Fn_(); }
